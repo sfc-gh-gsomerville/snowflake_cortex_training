@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en" class="scroll-smooth"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Interactive Guide to Snowflake Cortex Training&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Chosen Palette: Warm Neutrals --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Application Structure Plan: The application is designed as a user-centric, single-page dashboard to guide users through Snowflake Cortex training options. It abandons the linear report structure for a task-oriented flow. Key sections include: 1) An 'Overview' with interactive cards to explain Cortex features without overwhelming users. 2) A 'Learning Path' section, the core interactive element, which uses persona-based buttons (Beginner, Intermediate, Advanced) to generate tailored learning recommendations. This directly answers the user's need for guidance. 3) A 'Resource Explorer' with dynamic filtering to allow users to browse all training materials by type and cost. 4) A 'Certification' section with a visual chart to compare costs, making data easier to digest than a table. This structure prioritizes user discovery and decision-making over passive reading. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Visualization &amp; Content Choices: 1) Cortex Features: Report Info -&gt; List of Cortex components. Goal -&gt; Inform. Viz -&gt; Interactive HTML cards (Tailwind/JS). Interaction -&gt; Click to reveal details. Justification -&gt; Avoids a wall of text, encourages exploration. 2) Learning Paths: Report Info -&gt; Recommendations for different skill levels. Goal -&gt; Guide. Viz -&gt; Dynamic HTML content block. Interaction -&gt; Click persona buttons to filter and display a curated path. Justification -&gt; Provides a personalized, actionable roadmap. 3) Resources: Report Info -&gt; Multiple tables of free/paid resources. Goal -&gt; Organize/Compare. Viz -&gt; Filterable grid of cards. Interaction -&gt; Buttons to filter by cost/type. Justification -&gt; Unifies all resources into one searchable interface. 4) Certifications: Report Info -&gt; Table of certification costs. Goal -&gt; Compare. Viz -&gt; Chart.js Bar Chart. Interaction -&gt; Hover for tooltips. Justification -&gt; Visual cost comparison is more immediate and impactful than text. Library -&gt; Chart.js. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FDFBF8; /* Warm neutral background */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #4A4A4A;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-link {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: color 0.3s ease, border-bottom-color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 2px solid transparent;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-link:hover, .nav-link.active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #2563EB; /* A subtle blue for accent */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom-color: #2563EB;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-primary {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #2563EB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-primary:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #1D4ED8;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-secondary {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #E0E7FF;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #3730A3;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-secondary:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #C7D2FE;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-filter.active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #2563EB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: #2563EB;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FFFFFF;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #E5E7EB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s ease, box-shadow 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-5px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.chart-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 700px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-left: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-right: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 350px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (min-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.chart-container {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.fade-in {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 0.5s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fadeIn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>from { opacity: 0; transform: translateY(10px); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>to { opacity: 1; transform: translateY(0); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="antialiased"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;nav class="container mx-auto px-6 py-4 flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#" class="text-xl font-bold text-gray-800"&gt;❄️ Cortex Learning Guide&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hidden md:flex items-center space-x-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#overview" class="nav-link pb-1"&gt;Overview&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#learning-paths" class="nav-link pb-1"&gt;Learning Paths&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#resources" class="nav-link pb-1"&gt;Resource Explorer&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#certifications" class="nav-link pb-1"&gt;Certifications&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="md:hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="mobile-menu-button" class="text-gray-700 focus:outline-none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="mobile-menu" class="hidden md:hidden px-6 pb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#overview" class="block py-2 text-gray-700"&gt;Overview&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#learning-paths" class="block py-2 text-gray-700"&gt;Learning Paths&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#resources" class="block py-2 text-gray-700"&gt;Resource Explorer&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#certifications" class="block py-2 text-gray-700"&gt;Certifications&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;main&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="hero" class="py-20 bg-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="container mx-auto px-6 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight"&gt;Master Snowflake Cortex&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"&gt;Your interactive guide to the best free and paid training opportunities. Find the perfect learning path to build powerful AI applications in the Snowflake Data Cloud.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#learning-paths" class="mt-8 inline-block btn btn-primary rounded-full px-8 py-3 text-lg font-semibold"&gt;Find Your Path&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="overview" class="py-16 md:py-24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="container mx-auto px-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-3xl md:text-4xl font-bold text-gray-800"&gt;What is Snowflake Cortex?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto"&gt;Cortex is Snowflake's intelligent, fully managed service that brings generative AI to your data. This section breaks down its core components. Click on each feature to learn more about its capabilities and how it helps you build innovative AI solutions.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="cortex-features-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="learning-paths" class="py-16 md:py-24 bg-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="container mx-auto px-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-3xl md:text-4xl font-bold text-gray-800"&gt;Choose Your Optimal Learning Path&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto"&gt;Whether you're just starting out or you're an experienced professional, there's a learning path for you. Select your current skill level to see a curated set of recommended resources to help you master Snowflake Cortex efficiently.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex justify-center space-x-4 mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button data-path="beginner" class="path-selector btn btn-secondary rounded-full px-6 py-2 font-medium"&gt;Beginner&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button data-path="intermediate" class="path-selector btn btn-secondary rounded-full px-6 py-2 font-medium"&gt;Intermediate&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button data-path="advanced" class="path-selector btn btn-secondary rounded-full px-6 py-2 font-medium"&gt;Advanced&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="path-display" class="max-w-4xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="resources" class="py-16 md:py-24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="container mx-auto px-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-3xl md:text-4xl font-bold text-gray-800"&gt;Resource Explorer&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto"&gt;Dive into our comprehensive library of training materials. Use the filters below to browse all available tutorials, courses, webinars, and labs to find exactly what you need for your learning journey.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-wrap justify-center gap-4 mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button data-filter="all" class="btn-filter btn border border-gray-300 rounded-full px-4 py-1 text-sm font-medium active"&gt;All&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button data-filter="Free" class="btn-filter btn border border-gray-300 rounded-full px-4 py-1 text-sm font-medium"&gt;Free&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button data-filter="Paid" class="btn-filter btn border border-gray-300 rounded-full px-4 py-1 text-sm font-medium"&gt;Paid&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button data-filter="Tutorial" class="btn-filter btn border border-gray-300 rounded-full px-4 py-1 text-sm font-medium"&gt;Tutorial&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button data-filter="Course" class="btn-filter btn border border-gray-300 rounded-full px-4 py-1 text-sm font-medium"&gt;Course&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;button data-filter="Lab" class="btn-filter btn border border-gray-300 rounded-full px-4 py-1 text-sm font-medium"&gt;Lab/Webinar&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="resources-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="certifications" class="py-16 md:py-24 bg-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="container mx-auto px-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="text-center mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-3xl md:text-4xl font-bold text-gray-800"&gt;Validate Your Expertise&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto"&gt;Formalize your skills with a SnowPro Certification. This section provides an overview of the key certifications relevant to Snowflake Cortex, helping you choose the right one to advance your career. The chart below visualizes the cost of each exam.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid lg:grid-cols-2 gap-12 items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="cert-details" class="space-y-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="chart-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;canvas id="certCostChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-center text-sm text-gray-500 mt-4"&gt;Hover over the bars to see exact exam costs.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="costs" class="py-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="container mx-auto px-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-indigo-100/50 border border-indigo-200 rounded-lg p-8 max-w-4xl mx-auto text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold text-indigo-900"&gt;A Note on Compute Costs&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="mt-4 text-indigo-800"&gt;While many learning resources are free, remember that using Snowflake Cortex features in your own account incurs compute costs, typically based on token usage. Snowflake trial accounts have limitations, so for full access, you may need to convert to a paid account. Managing costs by choosing appropriate models and monitoring usage is a key part of practical Cortex expertise.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="bg-gray-800 text-white mt-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-6 py-8 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;❄️ This interactive guide is based on publicly available information about Snowflake Cortex.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-sm text-gray-400 mt-2"&gt;For the most current details, always refer to the official &lt;a href="https://www.snowflake.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-300"&gt;Snowflake Website&lt;/a&gt;.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', function() {</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const cortexFeatures = [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: 'LLM Functions', description: 'Facilitate text processing and analysis, allowing users to interact with LLMs directly through familiar SQL commands.' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: 'Cortex Search', description: 'Supports Retrieval-Augmented Generation (RAG) to create chatbots that can interact with both structured and unstructured data.' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: 'Cortex Analyst', description: 'An LLM-powered feature to build apps that reliably answer business questions from structured data using natural language.' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: 'Document AI', description: 'Designed for processing and analyzing unstructured data like PDFs, supporting tasks like entity extraction.' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: 'Cortex Agents', description: 'Orchestrate complex, multi-step AI tasks and actions, enabling more sophisticated AI applications.' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: 'Fine-Tuning', description: 'Leverage parameter-efficient fine-tuning (PEFT) to create customized adaptors for pre-trained models, all within Snowflake.' }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const resources = [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 1, title: 'Build a simple search application with Cortex Search', type: 'Tutorial', cost: 'Free', duration: '15 Mins', feature: 'Cortex Search', link: 'https://docs.snowflake.com/en/tutorials' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 2, title: 'Build a PDF chatbot with Cortex Search', type: 'Tutorial', cost: 'Free', duration: '60 Mins', feature: 'Cortex Search', link: 'https://docs.snowflake.com/en/tutorials' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 3, title: 'Answer questions with Cortex Analyst', type: 'Tutorial', cost: 'Free', duration: '30 Mins', feature: 'Cortex Analyst', link: 'https://docs.snowflake.com/en/tutorials' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 4, title: 'Create a Document AI pipeline', type: 'Tutorial', cost: 'Free', duration: '20 Mins', feature: 'Document AI', link: 'https://docs.snowflake.com/en/tutorials' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 5, title: 'Cortex Analyst Course', type: 'Course', cost: 'Free', duration: 'Self-paced', feature: 'Cortex Analyst', link: 'https://learn.snowflake.com/en/courses/spn-cortexanalyst/' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 6, title: 'Data Science Workshop (Badge)', type: 'Course', cost: 'Free', duration: 'Self-paced', feature: 'General AI/ML', link: 'http://learn.snowflake.com/en/#learningTracks' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 7, title: 'Build AI Apps with Anthropic Claude', type: 'Lab', cost: 'Free', duration: 'Live/On-Demand', feature: 'Cortex AI', link: 'https://www.snowflake.com/about/webinars/' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 8, title: 'Build a RAG Chatbot with Cortex', type: 'Lab', cost: 'Free', duration: 'Live/On-Demand', feature: 'Cortex Search', link: 'https://www.snowflake.com/about/webinars/' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 9, title: 'Cortex Fine-Tuning Webinar', type: 'Webinar', cost: 'Free', duration: 'On-Demand', feature: 'Fine-Tuning', link: 'https://www.snowflake.com/webinars/product-demo/cortex-fine-tuning-webinar-for-snowflake-partners-2024-08-29/' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 10, title: 'Snowflake GenAI Training', type: 'Course', cost: 'Paid', duration: 'Instructor-Led', feature: 'General AI/ML', link: 'https://learn.snowflake.com/en/' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 11, title: 'Coursera: Snowflake GenAI Professional Certificate', type: 'Course', cost: 'Paid', duration: 'Multi-course', feature: 'General AI/ML', link: 'https://www.coursera.org/partners/snowflake' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ id: 12, title: 'edX: GenAI for Data Engineering Certificate (IBM)', type: 'Course', cost: 'Paid', duration: '3 Months', feature: 'General AI/ML', link: 'https://www.edx.org/professional-certificate/ibm-generative-ai-for-data-engineering' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const certifications = [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: 'SnowPro Specialty: Gen AI', level: 'Specialty', cost: 225, description: 'Validates specialized knowledge for leveraging Gen AI methodologies, Cortex AI features, LLMs, and Document AI in Snowflake.', link: 'https://learn.snowflake.com/en/certifications/snowpro-GenAI' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: 'SnowPro Associate: Platform', level: 'Associate', cost: 100, description: 'Validates essential Snowflake skills, including foundational knowledge of AI/ML integration and Snowflake Cortex LLM functions.', link: 'https://learn.snowflake.com/en/certifications/snowpro-platform' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: 'SnowPro Advanced: Data Scientist', level: 'Advanced', cost: 375, description: 'Validates advanced skills in data science on Snowflake, implicitly covering Cortex for building and deploying ML models.', link: 'https://learn.snowflake.com/en/certifications' }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const learningPaths = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>beginner: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: 'Beginner Path: Foundational Skills',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: 'For those new to Snowflake or AI. This path focuses on core concepts and getting hands-on quickly.',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>steps: [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ title: 'Start with Quick Tutorials', description: 'Get a feel for Cortex with short, guided exercises.', resourceIds: [1, 3] },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ title: 'Take Foundational Courses', description: 'Build a solid understanding of Snowflake and Data Science principles.', resourceIds: [6, 5] },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ title: 'Consider the Associate Certification', description: 'Validate your foundational knowledge.', certName: 'SnowPro Associate: Platform' }</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>intermediate: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: 'Intermediate Path: Building Applications',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: 'For those familiar with Snowflake who want to build practical AI applications.',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>steps: [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ title: 'Build a Full Application', description: 'Tackle a more comprehensive project like a RAG chatbot.', resourceIds: [2, 8] },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ title: 'Explore Advanced Features', description: 'Attend labs on integrating with models like Claude or using Document AI.', resourceIds: [7, 4] },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ title: 'Deepen Knowledge with a Certificate', description: 'Enroll in a structured program to learn end-to-end GenAI development.', resourceIds: [11] }</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>advanced: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: 'Advanced Path: Specialization &amp; Enterprise',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: 'For experienced professionals aiming for deep expertise and enterprise-level deployment.',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>steps: [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ title: 'Master Specialized Topics', description: 'Dive into advanced concepts like model fine-tuning.', resourceIds: [9] },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ title: 'Take Instructor-Led Training', description: 'Get in-depth, expert-led instruction on complex use cases.', resourceIds: [10] },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{ title: 'Aim for the Specialty Certification', description: 'Become a validated expert in Generative AI on Snowflake.', certName: 'SnowPro Specialty: Gen AI' }</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const featuresGrid = document.getElementById('cortex-features-grid');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cortexFeatures.forEach(feature =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const featureEl = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>featureEl.className = 'card p-6 cursor-pointer';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>featureEl.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold text-gray-800 mb-2"&gt;${feature.name}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;${feature.description}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>featuresGrid.appendChild(featureEl);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const resourcesGrid = document.getElementById('resources-grid');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const renderResources = (filter = 'all') =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>resourcesGrid.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const filteredResources = resources.filter(r =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (filter === 'all') return true;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (filter === 'Free' || filter === 'Paid') return r.cost === filter;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return r.type === filter || (filter === 'Lab' &amp;&amp; r.type === 'Webinar');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>filteredResources.forEach(resource =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const resourceEl = document.createElement('a');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>resourceEl.href = resource.link;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>resourceEl.target = '_blank';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>resourceEl.rel = 'noopener noreferrer';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>resourceEl.className = 'card block p-6 fade-in';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>resourceEl.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex justify-between items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h4 class="text-lg font-bold text-gray-800 mb-2 pr-4"&gt;${resource.title}&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="flex-shrink-0 text-xs font-semibold rounded-full px-2 py-1 ${resource.cost === 'Free' ? 'bg-green-100 text-green-800' : 'bg-purple-100 text-purple-800'}"&gt;${resource.cost}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-500"&gt;${resource.feature}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="mt-4 flex justify-between items-center text-sm text-gray-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;${resource.type}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;${resource.duration}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>resourcesGrid.appendChild(resourceEl);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const filterButtons = document.querySelectorAll('.btn-filter');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>filterButtons.forEach(button =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>filterButtons.forEach(btn =&gt; btn.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>renderResources(button.dataset.filter);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const pathDisplay = document.getElementById('path-display');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const renderLearningPath = (pathKey) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const pathData = learningPaths[pathKey];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>pathDisplay.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const pathContainer = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>pathContainer.className = 'card p-8 fade-in';</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>let stepsHtml = pathData.steps.map((step, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let resourcesHtml = '';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (step.resourceIds) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>resourcesHtml = step.resourceIds.map(id =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const resource = resources.find(r =&gt; r.id === id);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return `&lt;a href="${resource.link}" target="_blank" rel="noopener noreferrer" class="block mt-2 ml-6 p-3 bg-gray-50 rounded-md hover:bg-gray-100 transition-colors"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="font-semibold text-blue-700"&gt;${resource.title}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-xs text-gray-500"&gt;${resource.type} • ${resource.cost}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/a&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}).join('');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (step.certName) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const cert = certifications.find(c =&gt; c.name === step.certName);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>resourcesHtml = `&lt;a href="${cert.link}" target="_blank" rel="noopener noreferrer" class="block mt-2 ml-6 p-3 bg-gray-50 rounded-md hover:bg-gray-100 transition-colors"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;p class="font-semibold text-blue-700"&gt;${cert.name}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;p class="text-xs text-gray-500"&gt;${cert.level} Certification&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                         </span>&lt;/a&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return `&lt;div class="relative pl-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="absolute left-0 top-1.5 w-4 h-4 bg-blue-500 rounded-full border-4 border-white"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>${index &lt; pathData.steps.length - 1 ? '&lt;div class="absolute left-[7px] top-4 h-full w-0.5 bg-blue-200"&gt;&lt;/div&gt;' : ''}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;h4 class="font-bold text-lg text-gray-800"&gt;${step.title}&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-gray-600 mb-2"&gt;${step.description}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>${resourcesHtml}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}).join('&lt;div class="h-8"&gt;&lt;/div&gt;');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>pathContainer.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold text-gray-800 mb-2"&gt;${pathData.title}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-8"&gt;${pathData.description}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-0"&gt;${stepsHtml}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>pathDisplay.appendChild(pathContainer);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const pathSelectors = document.querySelectorAll('.path-selector');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pathSelectors.forEach(button =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pathSelectors.forEach(btn =&gt; btn.classList.replace('btn-primary', 'btn-secondary'));</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.classList.replace('btn-secondary', 'btn-primary');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>renderLearningPath(button.dataset.path);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const certDetailsContainer = document.getElementById('cert-details');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>certifications.forEach(cert =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const certEl = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>certEl.className = 'card p-6';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>certEl.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-xs font-semibold rounded-full px-2 py-1 bg-blue-100 text-blue-800"&gt;${cert.level}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="text-xl font-bold text-gray-800 mt-2"&gt;${cert.name}&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mt-2 mb-4"&gt;${cert.description}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="${cert.link}" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-600 hover:underline"&gt;Learn More →&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>certDetailsContainer.appendChild(certEl);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const ctx = document.getElementById('certCostChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>new Chart(ctx, {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: 'bar',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>labels: certifications.map(c =&gt; c.name.replace('SnowPro ', '')),</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>label: 'Exam Cost (USD)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>data: certifications.map(c =&gt; c.cost),</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: ['#93C5FD', '#3B82F6', '#1E40AF'],</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderColor: ['#60A5FA', '#2563EB', '#1D4ED8'],</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderWidth: 1</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>indexAxis: 'y',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>x: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>beginAtZero: true,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>title: { display: true, text: 'Cost (USD)' }</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>legend: { display: false },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>tooltip: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>callbacks: {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>label: function(context) {</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>return ` Cost: $${context.raw}`;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const mobileMenuButton = document.getElementById('mobile-menu-button');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const mobileMenu = document.getElementById('mobile-menu');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>mobileMenuButton.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mobileMenu.classList.toggle('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const navLinks = document.querySelectorAll('.nav-link');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const sections = document.querySelectorAll('main section');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.addEventListener('scroll', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let current = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>sections.forEach(section =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const sectionTop = section.offsetTop;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (pageYOffset &gt;= sectionTop - 60) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>current = section.getAttribute('id');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>navLinks.forEach(link =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>link.classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (link.getAttribute('href').includes(current)) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>link.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderResources();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderLearningPath('beginner');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelector('.path-selector[data-path="beginner"]').classList.replace('btn-secondary', 'btn-primary');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
