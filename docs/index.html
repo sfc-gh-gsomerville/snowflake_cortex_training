@@ -16,8 +16,11 @@
     .feature-card-header { padding: 20px; cursor: pointer; transition: background-color 0.3s ease; }
     .feature-card-header:hover { background-color: #edf2f7; }
     .feature-card-header h4 { color: #005A9E; margin: 0; display: flex; justify-content: space-between; align-items: center; }
+    .feature-card-header h4 a { color: #005A9E; text-decoration: none; flex-grow: 1; }
+    .feature-card-header h4 a:hover { color: #2b6cb0; }
+    .feature-card-content-inner a { display: block; margin-top: 15px; font-weight: 600; }
     .feature-card-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-    .feature-card-content.expanded { max-height: 200px; }
+    .feature-card-content.expanded { max-height: 300px; }
     .feature-card-content-inner { padding: 0 20px 20px 20px; }
     .expand-icon { transition: transform 0.3s ease; font-size: 0.8em; }
     .expand-icon.rotated { transform: rotate(180deg); }
@@ -47,8 +50,8 @@
         
         <div class="feature-grid">
             <div class="feature-card">
-                <div class="feature-card-header" onclick="toggleCard('document-ai')">
-                    <h4>&#x1F916; Document AI <span class="expand-icon" id="document-ai-icon">▼</span></h4>
+                <div class="feature-card-header" onclick="toggleCard('document-ai', event)">
+                    <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/overview" target="_blank">&#x1F916; Document AI</a> <span class="expand-icon" id="document-ai-icon">▼</span></h4>
                 </div>
                 <div class="feature-card-content" id="document-ai-content">
                     <div class="feature-card-content-inner">
@@ -58,8 +61,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-card-header" onclick="toggleCard('cortex-search')">
-                    <h4>&#x1F50D; Cortex Search <span class="expand-icon" id="cortex-search-icon">▼</span></h4>
+                <div class="feature-card-header" onclick="toggleCard('cortex-search', event)">
+                    <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview" target="_blank">&#x1F50D; Cortex Search</a> <span class="expand-icon" id="cortex-search-icon">▼</span></h4>
                 </div>
                 <div class="feature-card-content" id="cortex-search-content">
                     <div class="feature-card-content-inner">
@@ -69,8 +72,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-card-header" onclick="toggleCard('cortex-analyst')">
-                    <h4>&#x1F4CA; Cortex Analyst <span class="expand-icon" id="cortex-analyst-icon">▼</span></h4>
+                <div class="feature-card-header" onclick="toggleCard('cortex-analyst', event)">
+                    <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst" target="_blank">&#x1F4CA; Cortex Analyst</a> <span class="expand-icon" id="cortex-analyst-icon">▼</span></h4>
                 </div>
                 <div class="feature-card-content" id="cortex-analyst-content">
                     <div class="feature-card-content-inner">
@@ -80,8 +83,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-card-header" onclick="toggleCard('semantic-views')">
-                    <h4>&#x1F3D7;&#xFE0F; Semantic Views <span class="expand-icon" id="semantic-views-icon">▼</span></h4>
+                <div class="feature-card-header" onclick="toggleCard('semantic-views', event)">
+                    <h4><a href="https://docs.snowflake.com/en/user-guide/views-semantic/overview" target="_blank">&#x1F3D7;&#xFE0F; Semantic Views</a> <span class="expand-icon" id="semantic-views-icon">▼</span></h4>
                 </div>
                 <div class="feature-card-content" id="semantic-views-content">
                     <div class="feature-card-content-inner">
@@ -91,8 +94,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-card-header" onclick="toggleCard('cortex-agents')">
-                    <h4>&#x1F91D; Cortex Agents <span class="expand-icon" id="cortex-agents-icon">▼</span></h4>
+                <div class="feature-card-header" onclick="toggleCard('cortex-agents', event)">
+                    <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents" target="_blank">&#x1F91D; Cortex Agents</a> <span class="expand-icon" id="cortex-agents-icon">▼</span></h4>
                 </div>
                 <div class="feature-card-content" id="cortex-agents-content">
                     <div class="feature-card-content-inner">
@@ -102,8 +105,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-card-header" onclick="toggleCard('cortex-aisql')">
-                    <h4>💬 Cortex AISQL <span class="expand-icon" id="cortex-aisql-icon">▼</span></h4>
+                <div class="feature-card-header" onclick="toggleCard('cortex-aisql', event)">
+                    <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql" target="_blank">💬 Cortex AISQL</a> <span class="expand-icon" id="cortex-aisql-icon">▼</span></h4>
                 </div>
                 <div class="feature-card-content" id="cortex-aisql-content">
                     <div class="feature-card-content-inner">
@@ -113,8 +116,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-card-header" onclick="toggleCard('snowflake-intelligence')">
-                    <h4>🌟 Snowflake Intelligence <span class="expand-icon" id="snowflake-intelligence-icon">▼</span></h4>
+                <div class="feature-card-header" onclick="toggleCard('snowflake-intelligence', event)">
+                    <h4><a href="https://www.snowflake.com/en/blog/intelligence-snowflake-summit-2025/" target="_blank">🌟 Snowflake Intelligence</a> <span class="expand-icon" id="snowflake-intelligence-icon">▼</span></h4>
                 </div>
                 <div class="feature-card-content" id="snowflake-intelligence-content">
                     <div class="feature-card-content-inner">
@@ -124,8 +127,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-card-header" onclick="toggleCard('llm-functions')">
-                    <h4>🔧 LLM Functions <span class="expand-icon" id="llm-functions-icon">▼</span></h4>
+                <div class="feature-card-header" onclick="toggleCard('llm-functions', event)">
+                    <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions" target="_blank">🔧 LLM Functions</a> <span class="expand-icon" id="llm-functions-icon">▼</span></h4>
                 </div>
                 <div class="feature-card-content" id="llm-functions-content">
                     <div class="feature-card-content-inner">
@@ -135,8 +138,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-card-header" onclick="toggleCard('parse-document')">
-                    <h4>📄 Parse Document <span class="expand-icon" id="parse-document-icon">▼</span></h4>
+                <div class="feature-card-header" onclick="toggleCard('parse-document', event)">
+                    <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/parse-document" target="_blank">📄 Parse Document</a> <span class="expand-icon" id="parse-document-icon">▼</span></h4>
                 </div>
                 <div class="feature-card-content" id="parse-document-content">
                     <div class="feature-card-content-inner">
@@ -146,8 +149,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-card-header" onclick="toggleCard('vector-embeddings')">
-                    <h4>🔗 Vector Embeddings <span class="expand-icon" id="vector-embeddings-icon">▼</span></h4>
+                <div class="feature-card-header" onclick="toggleCard('vector-embeddings', event)">
+                    <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/vector-embeddings" target="_blank">🔗 Vector Embeddings</a> <span class="expand-icon" id="vector-embeddings-icon">▼</span></h4>
                 </div>
                 <div class="feature-card-content" id="vector-embeddings-content">
                     <div class="feature-card-content-inner">
@@ -157,8 +160,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-card-header" onclick="toggleCard('fine-tuning')">
-                    <h4>⚙️ Fine-tuning <span class="expand-icon" id="fine-tuning-icon">▼</span></h4>
+                <div class="feature-card-header" onclick="toggleCard('fine-tuning', event)">
+                    <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-finetuning" target="_blank">⚙️ Fine-tuning</a> <span class="expand-icon" id="fine-tuning-icon">▼</span></h4>
                 </div>
                 <div class="feature-card-content" id="fine-tuning-content">
                     <div class="feature-card-content-inner">
@@ -272,7 +275,12 @@
   </div>
   
   <script>
-    function toggleCard(cardId) {
+    function toggleCard(cardId, event) {
+      // Prevent toggling if the click was on a link
+      if (event && event.target.tagName === 'A') {
+        return;
+      }
+      
       const content = document.getElementById(cardId + '-content');
       const icon = document.getElementById(cardId + '-icon');
       
