@@ -12,8 +12,15 @@
     h2 { font-size: 1.8em; border-bottom: 3px solid #005A9E; padding-bottom: 10px; margin-top: 30px; }
     h3 { font-size: 1.3em; color: #2b6cb0; margin-top: 25px; }
     .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
-    .feature-card { background: #f7fafc; padding: 20px; border-radius: 8px; border-left: 4px solid #005A9E; }
-    .feature-card h4 { color: #005A9E; margin-top: 0; }
+    .feature-card { background: #f7fafc; border-radius: 8px; border-left: 4px solid #005A9E; overflow: hidden; }
+    .feature-card-header { padding: 20px; cursor: pointer; transition: background-color 0.3s ease; }
+    .feature-card-header:hover { background-color: #edf2f7; }
+    .feature-card-header h4 { color: #005A9E; margin: 0; display: flex; justify-content: space-between; align-items: center; }
+    .feature-card-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .feature-card-content.expanded { max-height: 200px; }
+    .feature-card-content-inner { padding: 0 20px 20px 20px; }
+    .expand-icon { transition: transform 0.3s ease; font-size: 0.8em; }
+    .expand-icon.rotated { transform: rotate(180deg); }
     .training-section { margin-bottom: 30px; background: #f9fafb; padding: 20px; border-radius: 8px; }
     .resource-list { list-style: none; padding: 0; }
     .resource-list li { margin-bottom: 12px; padding: 8px; background: white; border-radius: 6px; border-left: 3px solid #38b2ac; }
@@ -40,59 +47,125 @@
         
         <div class="feature-grid">
             <div class="feature-card">
-                <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/overview" target="_blank" style="text-decoration: none; color: inherit;">&#x1F916; Document AI</a></h4>
-                <p>Extract data from documents using Arctic-TILT, Snowflake's proprietary multimodal LLM. Process invoices, contracts, and various document types with zero-shot extraction and fine-tuning capabilities.</p>
-                <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/overview" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                <div class="feature-card-header" onclick="toggleCard('document-ai')">
+                    <h4>&#x1F916; Document AI <span class="expand-icon" id="document-ai-icon">▼</span></h4>
+                </div>
+                <div class="feature-card-content" id="document-ai-content">
+                    <div class="feature-card-content-inner">
+                        <p>Extract data from documents using Arctic-TILT, Snowflake's proprietary multimodal LLM. Process invoices, contracts, and various document types with zero-shot extraction and fine-tuning capabilities.</p>
+                        <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/overview" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                    </div>
+                </div>
             </div>
             <div class="feature-card">
-                <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview" target="_blank" style="text-decoration: none; color: inherit;">&#x1F50D; Cortex Search</a></h4>
-                <p>Low-latency, high-quality hybrid search combining vector and keyword search. Powers RAG applications and enterprise search with automatic embedding and infrastructure management.</p>
-                <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                <div class="feature-card-header" onclick="toggleCard('cortex-search')">
+                    <h4>&#x1F50D; Cortex Search <span class="expand-icon" id="cortex-search-icon">▼</span></h4>
+                </div>
+                <div class="feature-card-content" id="cortex-search-content">
+                    <div class="feature-card-content-inner">
+                        <p>Low-latency, high-quality hybrid search combining vector and keyword search. Powers RAG applications and enterprise search with automatic embedding and infrastructure management.</p>
+                        <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                    </div>
+                </div>
             </div>
             <div class="feature-card">
-                <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst" target="_blank" style="text-decoration: none; color: inherit;">&#x1F4CA; Cortex Analyst</a></h4>
-                <p>Convert natural language questions into SQL queries with 90%+ accuracy using semantic models. Enables business users to query data without technical expertise.</p>
-                <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                <div class="feature-card-header" onclick="toggleCard('cortex-analyst')">
+                    <h4>&#x1F4CA; Cortex Analyst <span class="expand-icon" id="cortex-analyst-icon">▼</span></h4>
+                </div>
+                <div class="feature-card-content" id="cortex-analyst-content">
+                    <div class="feature-card-content-inner">
+                        <p>Convert natural language questions into SQL queries with 90%+ accuracy using semantic models. Enables business users to query data without technical expertise.</p>
+                        <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                    </div>
+                </div>
             </div>
             <div class="feature-card">
-                <h4><a href="https://docs.snowflake.com/en/user-guide/views-semantic/overview" target="_blank" style="text-decoration: none; color: inherit;">&#x1F3D7;&#xFE0F; Semantic Views</a></h4>
-                <p>Native database objects that store business context, metrics, and dimensions. Bridge the gap between raw data and meaningful business insights for AI and BI tools.</p>
-                <a href="https://docs.snowflake.com/en/user-guide/views-semantic/overview" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                <div class="feature-card-header" onclick="toggleCard('semantic-views')">
+                    <h4>&#x1F3D7;&#xFE0F; Semantic Views <span class="expand-icon" id="semantic-views-icon">▼</span></h4>
+                </div>
+                <div class="feature-card-content" id="semantic-views-content">
+                    <div class="feature-card-content-inner">
+                        <p>Native database objects that store business context, metrics, and dimensions. Bridge the gap between raw data and meaningful business insights for AI and BI tools.</p>
+                        <a href="https://docs.snowflake.com/en/user-guide/views-semantic/overview" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                    </div>
+                </div>
             </div>
             <div class="feature-card">
-                <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents" target="_blank" style="text-decoration: none; color: inherit;">&#x1F91D; Cortex Agents</a></h4>
-                <p>Orchestrate across structured and unstructured data sources. Plan tasks, execute tools, and generate responses using Cortex Search and Cortex Analyst capabilities.</p>
-                <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                <div class="feature-card-header" onclick="toggleCard('cortex-agents')">
+                    <h4>&#x1F91D; Cortex Agents <span class="expand-icon" id="cortex-agents-icon">▼</span></h4>
+                </div>
+                <div class="feature-card-content" id="cortex-agents-content">
+                    <div class="feature-card-content-inner">
+                        <p>Orchestrate across structured and unstructured data sources. Plan tasks, execute tools, and generate responses using Cortex Search and Cortex Analyst capabilities.</p>
+                        <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                    </div>
+                </div>
             </div>
             <div class="feature-card">
-                <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql" target="_blank" style="text-decoration: none; color: inherit;">💬 Cortex AISQL</a></h4>
-                <p>AI-powered SQL operators for complex data transformations. Filter, aggregate, and analyze data using LLM-like capabilities directly within SQL queries.</p>
-                <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                <div class="feature-card-header" onclick="toggleCard('cortex-aisql')">
+                    <h4>💬 Cortex AISQL <span class="expand-icon" id="cortex-aisql-icon">▼</span></h4>
+                </div>
+                <div class="feature-card-content" id="cortex-aisql-content">
+                    <div class="feature-card-content-inner">
+                        <p>AI-powered SQL operators for complex data transformations. Filter, aggregate, and analyze data using LLM-like capabilities directly within SQL queries.</p>
+                        <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                    </div>
+                </div>
             </div>
             <div class="feature-card">
-                <h4><a href="https://www.snowflake.com/en/blog/intelligence-snowflake-summit-2025/" target="_blank" style="text-decoration: none; color: inherit;">🌟 Snowflake Intelligence</a></h4>
-                <p>Agentic experience for conversational analytics. Talk to your data, derive insights from trusted enterprise information, and initiate actions from a unified interface.</p>
-                <a href="https://www.snowflake.com/en/blog/intelligence-snowflake-summit-2025/" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Blog Post →</a>
+                <div class="feature-card-header" onclick="toggleCard('snowflake-intelligence')">
+                    <h4>🌟 Snowflake Intelligence <span class="expand-icon" id="snowflake-intelligence-icon">▼</span></h4>
+                </div>
+                <div class="feature-card-content" id="snowflake-intelligence-content">
+                    <div class="feature-card-content-inner">
+                        <p>Agentic experience for conversational analytics. Talk to your data, derive insights from trusted enterprise information, and initiate actions from a unified interface.</p>
+                        <a href="https://www.snowflake.com/en/blog/intelligence-snowflake-summit-2025/" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Blog Post →</a>
+                    </div>
+                </div>
             </div>
             <div class="feature-card">
-                <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions" target="_blank" style="text-decoration: none; color: inherit;">🔧 LLM Functions</a></h4>
-                <p>Built-in functions for sentiment analysis, translation, summarization, text generation, and more using industry-leading models like Llama, Mistral, and Arctic.</p>
-                <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                <div class="feature-card-header" onclick="toggleCard('llm-functions')">
+                    <h4>🔧 LLM Functions <span class="expand-icon" id="llm-functions-icon">▼</span></h4>
+                </div>
+                <div class="feature-card-content" id="llm-functions-content">
+                    <div class="feature-card-content-inner">
+                        <p>Built-in functions for sentiment analysis, translation, summarization, text generation, and more using industry-leading models like Llama, Mistral, and Arctic.</p>
+                        <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                    </div>
+                </div>
             </div>
             <div class="feature-card">
-                <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/parse-document" target="_blank" style="text-decoration: none; color: inherit;">📄 Parse Document</a></h4>
-                <p>Extract structured data from unstructured documents including PDFs, Word documents, and images. Parse text, tables, and other content using Snowflake's built-in document parsing capabilities.</p>
-                <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/parse-document" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                <div class="feature-card-header" onclick="toggleCard('parse-document')">
+                    <h4>📄 Parse Document <span class="expand-icon" id="parse-document-icon">▼</span></h4>
+                </div>
+                <div class="feature-card-content" id="parse-document-content">
+                    <div class="feature-card-content-inner">
+                        <p>Extract structured data from unstructured documents including PDFs, Word documents, and images. Parse text, tables, and other content using Snowflake's built-in document parsing capabilities.</p>
+                        <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/parse-document" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                    </div>
+                </div>
             </div>
             <div class="feature-card">
-                <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/vector-embeddings" target="_blank" style="text-decoration: none; color: inherit;">🔗 Vector Embeddings</a></h4>
-                <p>Generate high-quality vector representations of text data for semantic search, clustering, and similarity analysis. Powers AI applications with efficient vector storage and retrieval.</p>
-                <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/vector-embeddings" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                <div class="feature-card-header" onclick="toggleCard('vector-embeddings')">
+                    <h4>🔗 Vector Embeddings <span class="expand-icon" id="vector-embeddings-icon">▼</span></h4>
+                </div>
+                <div class="feature-card-content" id="vector-embeddings-content">
+                    <div class="feature-card-content-inner">
+                        <p>Generate high-quality vector representations of text data for semantic search, clustering, and similarity analysis. Powers AI applications with efficient vector storage and retrieval.</p>
+                        <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/vector-embeddings" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                    </div>
+                </div>
             </div>
             <div class="feature-card">
-                <h4><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-finetuning" target="_blank" style="text-decoration: none; color: inherit;">⚙️ Fine-tuning</a></h4>
-                <p>Customize large language models for your specific tasks using parameter-efficient fine-tuning (PEFT). Train custom adaptors on your data for improved performance on domain-specific applications.</p>
-                <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-finetuning" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                <div class="feature-card-header" onclick="toggleCard('fine-tuning')">
+                    <h4>⚙️ Fine-tuning <span class="expand-icon" id="fine-tuning-icon">▼</span></h4>
+                </div>
+                <div class="feature-card-content" id="fine-tuning-content">
+                    <div class="feature-card-content-inner">
+                        <p>Customize large language models for your specific tasks using parameter-efficient fine-tuning (PEFT). Train custom adaptors on your data for improved performance on domain-specific applications.</p>
+                        <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-finetuning" target="_blank" style="font-size: 0.9em; color: #2b6cb0; text-decoration: none;">📖 View Documentation →</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -197,5 +270,20 @@
       <p style="font-size: 0.9em;">For official information and the latest updates, visit <a href="https://snowflake.com" target="_blank">snowflake.com</a></p>
     </footer>
   </div>
+  
+  <script>
+    function toggleCard(cardId) {
+      const content = document.getElementById(cardId + '-content');
+      const icon = document.getElementById(cardId + '-icon');
+      
+      if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        icon.classList.remove('rotated');
+      } else {
+        content.classList.add('expanded');
+        icon.classList.add('rotated');
+      }
+    }
+  </script>
 </body>
 </html>
