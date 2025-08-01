@@ -32,6 +32,13 @@
     .intro-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
     .badge { background: #38b2ac; color: white; padding: 3px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; }
     footer { text-align: center; margin-top: 40px; padding: 20px; background: #edf2f7; border-radius: 8px; color: #4a5568; }
+    .two-column-layout { display: flex; gap: 30px; align-items: flex-start; }
+    .column-left { flex: 2; }
+    .column-right { flex: 1; }
+    @media (max-width: 768px) {
+      .two-column-layout { flex-direction: column; gap: 20px; }
+      .column-left, .column-right { flex: 1; }
+    }
 
   </style>
 </head>
@@ -177,61 +184,63 @@
     <section class="training-section">
       <h2>🏫 Official Snowflake Resources</h2>
       
+      <div class="two-column-layout">
+        <div class="column-left">
+          <h3>&#x1F3AF; Snowflake Quickstarts for Cortex</h3>
+          <p><strong>Official Collection:</strong> <a href="https://quickstarts.snowflake.com/?cat=cortex" target="_blank">https://quickstarts.snowflake.com/?cat=cortex</a></p>
+          
+          <div style="margin: 20px 0;">
+            <h4 style="color: #2b6cb0; margin-bottom: 15px;">Example Cortex Quickstart Tutorials</h4>
+            
+            <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
+              <h5 style="margin: 0 0 8px 0;">1. Getting Started with Cortex Analyst</h5>
+              <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Conversational interface for structured data, semantic models, natural language to SQL conversion with 90%+ accuracy, REST API integration with Streamlit.</p>
+              <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/getting_started_with_cortex_analyst/" target="_blank">Getting Started with Cortex Analyst</a></p>
+            </div>
 
+            <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
+              <h5 style="margin: 0 0 8px 0;">2. Getting Started with Cortex Agents</h5>
+              <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Build intelligent sales assistants combining structured/unstructured data analysis, hybrid search, stateless REST API, real-time streaming responses.</p>
+              <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/getting_started_with_cortex_agents/" target="_blank">Getting Started with Cortex Agents</a></p>
+            </div>
 
-              <h3>&#x1F3AF; Snowflake Quickstarts for Cortex</h3>
-      <p><strong>Official Collection:</strong> <a href="https://quickstarts.snowflake.com/?cat=cortex" target="_blank">https://quickstarts.snowflake.com/?cat=cortex</a></p>
-      
-      <div style="margin: 20px 0;">
-        <h4 style="color: #2b6cb0; margin-bottom: 15px;">Example Cortex Quickstart Tutorials</h4>
-        
-        <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
-          <h5 style="margin: 0 0 8px 0;">1. Getting Started with Cortex Analyst</h5>
-          <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Conversational interface for structured data, semantic models, natural language to SQL conversion with 90%+ accuracy, REST API integration with Streamlit.</p>
-          <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/getting_started_with_cortex_analyst/" target="_blank">Getting Started with Cortex Analyst</a></p>
+            <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
+              <h5 style="margin: 0 0 8px 0;">3. Customer Reviews Analytics using Snowflake Cortex</h5>
+              <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Analyze multilingual customer reviews, sentiment analysis, text categorization at scale, aspect-based sentiment analysis, generate actionable business insights.</p>
+              <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/customer_reviews_analytics_using_snowflake_cortex/" target="_blank">Customer Reviews Analytics</a></p>
+            </div>
+
+            <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
+              <h5 style="margin: 0 0 8px 0;">4. Using Snowflake Cortex and Streamlit with Geospatial Data</h5>
+              <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Geospatial data analysis, location-centric applications, Snowflake Marketplace datasets, Cortex functions with Snowpark, interactive mapping with Streamlit.</p>
+              <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/using_snowflake_cortex_and_streamlit_with_geospatial_data/" target="_blank">Cortex and Streamlit with Geospatial Data</a></p>
+            </div>
+
+            <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
+              <h5 style="margin: 0 0 8px 0;">5. Getting Started with Amazon Q Business and Cortex</h5>
+              <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Integrate Amazon Q Business with Cortex Search, OAuth authentication, end-to-end copilot workflows, unstructured data processing with PARSE_DOCUMENT().</p>
+              <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/getting_started_with_amazon_q_business%20and_cortex/" target="_blank">Amazon Q Business and Cortex</a></p>
+            </div>
+
+            <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
+              <h5 style="margin: 0 0 8px 0;">6. Build RAG Based Equipment Maintenance App Using Snowflake Cortex</h5>
+              <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Retrieval Augmented Generation (RAG), Snowpark Python PDF processing, Vector datatype, E5-base-v2 text embedding, interactive Streamlit applications for equipment maintenance.</p>
+              <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/build_rag_based_equipment_maintenance_app_using_snowflake_cortex/" target="_blank">RAG Based Equipment Maintenance App</a></p>
+            </div>
+          </div>
         </div>
 
-        <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
-          <h5 style="margin: 0 0 8px 0;">2. Getting Started with Cortex Agents</h5>
-          <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Build intelligent sales assistants combining structured/unstructured data analysis, hybrid search, stateless REST API, real-time streaming responses.</p>
-          <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/getting_started_with_cortex_agents/" target="_blank">Getting Started with Cortex Agents</a></p>
-        </div>
-
-        <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
-          <h5 style="margin: 0 0 8px 0;">3. Customer Reviews Analytics using Snowflake Cortex</h5>
-          <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Analyze multilingual customer reviews, sentiment analysis, text categorization at scale, aspect-based sentiment analysis, generate actionable business insights.</p>
-          <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/customer_reviews_analytics_using_snowflake_cortex/" target="_blank">Customer Reviews Analytics</a></p>
-        </div>
-
-        <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
-          <h5 style="margin: 0 0 8px 0;">4. Using Snowflake Cortex and Streamlit with Geospatial Data</h5>
-          <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Geospatial data analysis, location-centric applications, Snowflake Marketplace datasets, Cortex functions with Snowpark, interactive mapping with Streamlit.</p>
-          <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/using_snowflake_cortex_and_streamlit_with_geospatial_data/" target="_blank">Cortex and Streamlit with Geospatial Data</a></p>
-        </div>
-
-        <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
-          <h5 style="margin: 0 0 8px 0;">5. Getting Started with Amazon Q Business and Cortex</h5>
-          <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Integrate Amazon Q Business with Cortex Search, OAuth authentication, end-to-end copilot workflows, unstructured data processing with PARSE_DOCUMENT().</p>
-          <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/getting_started_with_amazon_q_business%20and_cortex/" target="_blank">Amazon Q Business and Cortex</a></p>
-        </div>
-
-        <div style="border-left: 4px solid #005A9E; padding-left: 15px; margin-bottom: 20px;">
-          <h5 style="margin: 0 0 8px 0;">6. Build RAG Based Equipment Maintenance App Using Snowflake Cortex</h5>
-          <p style="margin: 0 0 8px 0; font-size: 0.9em;"><strong>Learn:</strong> Retrieval Augmented Generation (RAG), Snowpark Python PDF processing, Vector datatype, E5-base-v2 text embedding, interactive Streamlit applications for equipment maintenance.</p>
-          <p style="margin: 0; font-size: 0.85em;"><strong>Link:</strong> <a href="https://quickstarts.snowflake.com/guide/build_rag_based_equipment_maintenance_app_using_snowflake_cortex/" target="_blank">RAG Based Equipment Maintenance App</a></p>
+        <div class="column-right">
+          <h3>🎓 Snowflake University & Training</h3>
+          <ul class="resource-list">
+            <li><a href="https://www.snowflake.com/data-cloud-academy-generative-ai-llm/" target="_blank">Generative AI & ML School</a> <span class="badge">FREE</span> - Comprehensive AI training tracks</li>
+            <li><a href="https://www.snowflake.com/data-cloud-academy-data-scientists/" target="_blank">Data Scientist School</a> <span class="badge">FREE</span> - End-to-end ML workflows</li>
+            <li><a href="https://www.snowflake.com/webinars/virtual-hands-on-labs/virtual-hands-on-lab-build-an-llm-powered-gen-ai-app-in-10-min-with-snowflake-cortex-ai-2025-03-20/" target="_blank">Build LLM-powered Apps in 10 Minutes</a> <span class="badge">FREE</span> - Hands-on virtual lab</li>
+            <li><a href="https://www.snowflake.com/en/resources/learn/training/" target="_blank">Snowflake Education Services</a> - Professional instructor-led training</li>
+            <li><a href="https://www.snowflake.com/certifications/" target="_blank">SnowPro Certifications</a> - Industry-recognized certifications</li>
+          </ul>
         </div>
       </div>
-
-      <h3>🎓 Snowflake University & Training</h3>
-      <ul class="resource-list">
-        <li><a href="https://www.snowflake.com/data-cloud-academy-generative-ai-llm/" target="_blank">Generative AI & ML School</a> <span class="badge">FREE</span> - Comprehensive AI training tracks</li>
-        <li><a href="https://www.snowflake.com/data-cloud-academy-data-scientists/" target="_blank">Data Scientist School</a> <span class="badge">FREE</span> - End-to-end ML workflows</li>
-        <li><a href="https://www.snowflake.com/webinars/virtual-hands-on-labs/virtual-hands-on-lab-build-an-llm-powered-gen-ai-app-in-10-min-with-snowflake-cortex-ai-2025-03-20/" target="_blank">Build LLM-powered Apps in 10 Minutes</a> <span class="badge">FREE</span> - Hands-on virtual lab</li>
-        <li><a href="https://www.snowflake.com/en/resources/learn/training/" target="_blank">Snowflake Education Services</a> - Professional instructor-led training</li>
-        <li><a href="https://www.snowflake.com/certifications/" target="_blank">SnowPro Certifications</a> - Industry-recognized certifications</li>
-      </ul>
-
-
     </section>
 
     <section class="training-section">
